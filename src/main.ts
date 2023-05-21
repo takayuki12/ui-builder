@@ -6,6 +6,8 @@
 
 // Components
 import App from './App.vue'
+// main.ts
+import 'virtual:uno.css'
 
 // Composables
 import { createApp } from 'vue'
