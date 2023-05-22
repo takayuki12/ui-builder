@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { PAGE_COMPONENT, COMPONENT_LIST } from "@/router/route-name";
+import RenderedUi from "@/components/ui/rendered-ui.vue";
 </script>
 
 <template>
@@ -36,7 +37,9 @@ import { PAGE_COMPONENT, COMPONENT_LIST } from "@/router/route-name";
                 </div>
             </v-navigation-drawer>
 
-            <v-main style="overflow-y: auto"> </v-main>
+            <v-main style="overflow-y: auto">
+                <rendered-ui></rendered-ui>
+            </v-main>
         </v-layout>
     </v-sheet>
 </template>

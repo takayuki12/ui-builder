@@ -2,10 +2,29 @@
 import { ref } from "vue";
 import { Presence, Motion } from "motion/vue";
 import { Component } from "@/core/types";
+import { watch } from "vue";
+import { useDraggable } from "@vueuse/core";
+import { selectedComponentId } from "@/core/store";
+import { useObservable } from "@vueuse/rxjs";
 
 const isOpen = ref(true);
-
 defineProps<{ list: Component[] }>();
+
+const elms = ref<HTMLElement[]>();
+
+// const selectedComponent = useObservable(selectedComponentId, {
+//     initialValue: -1,
+// });
+watch(elms, () => {
+    if (elms.value === undefined || elms.value.length === 0) return;
+    elms.value.forEach((elm) => {
+        useDraggable(elm, {
+            onStart: ({ x, y }) => {
+              selectedComponentId.next(+elm.dataset.id!);
+            },
+        });
+    });
+});
 </script>
 
 <template>
@@ -27,8 +46,13 @@ defineProps<{ list: Component[] }>();
                         v-for="item in list"
                         :key="item.id"
                         :class="['px-4 hover:bg-gray-50 cursor-move py-2']"
+                        ref="elms"
+                        draggable="true"
+                        :data-id="item.id"
                     >
-                        <div class="i-typcn:sort-alphabetically inline-block text-lg"></div>
+                        <div
+                            class="i-typcn:sort-alphabetically inline-block text-lg"
+                        ></div>
                         {{ item.name }}
                     </div>
                 </div>

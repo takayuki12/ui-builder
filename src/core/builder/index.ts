@@ -1,18 +1,21 @@
 import { BehaviorSubject } from "rxjs";
 import { Component } from "../types";
-import { ref } from "vue";
+import { h, ref } from "vue";
+import { setList } from "../store";
 
-
-// const lists = new BehaviorSubject();
-const list = ref<Component[]>([]);
-
-
-export function init(tree: Component[]){
-  // post processing
-  list.value = tree;
-  console.log(tree);
-
+export function init(tree: Component[]) {
+    setList(tree);
 }
 
+export function renderer(element: Component) {
+    const { component, props: elmprops, values } = element;
+    const props: Record<string, any> = {};
 
-export function getList() {return list};
+    if (values) {
+        Object.keys(elmprops).forEach((key) => {
+            props[key] = values[key];
+        });
+    }
+
+    return h(component, props);
+}
