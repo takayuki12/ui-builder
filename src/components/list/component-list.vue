@@ -7,14 +7,11 @@ import { useDraggable } from "@vueuse/core";
 import { selectedComponentId } from "@/core/store";
 import { useObservable } from "@vueuse/rxjs";
 
-const isOpen = ref(true);
+const isOpen = ref(false);
 defineProps<{ list: Component[] }>();
 
 const elms = ref<HTMLElement[]>();
 
-// const selectedComponent = useObservable(selectedComponentId, {
-//     initialValue: -1,
-// });
 watch(elms, () => {
     if (elms.value === undefined || elms.value.length === 0) return;
     elms.value.forEach((elm) => {
@@ -33,7 +30,7 @@ watch(elms, () => {
     >
         <Presence>
             <Motion
-                v-if="isOpen"
+                v-show="isOpen"
                 :initial="{ opacity: 0, y: 100 }"
                 :animate="{ opacity: 1, y: 0 }"
                 :exit="{ opacity: 0, y: 100 }"
