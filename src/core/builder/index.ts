@@ -1,38 +1,34 @@
 import { BehaviorSubject } from "rxjs";
-import { Component } from "../types";
+import { Component, Node } from "../types";
 import { h, ref } from "vue";
-import { setList } from "../store";
+import { getList, setList } from "../store";
 import Editor from "@/components/ui/item-editor.vue";
 
 export function init(tree: Component[]) {
     setList(tree);
 }
 
-const state = ref({ text: "" });
-export function renderer(element: Component) {
-    const { component, props: elmprops, values } = element;
+export function renderer(node: Node) {
+    const element = getList().find((c) => c.id === node.componentId)!;
+
+    const { component, props: elmprops } = element;
     const props: Record<string, any> = {};
 
-    if (values) {
-        Object.keys(elmprops).forEach((key) => {
-            props[key] = values[key];
-        });
-    }
-
+    Object.keys(elmprops).forEach((key) => {
+        props[key] = node.values[key] || "default value";
+    });
 
     return h(
         Editor,
         {
-            nodeId: element.id,
-            class: "hover:bg-blue-300",
+            nodeId: node.id,
             onClick: () => {
                 // load component state
             },
             onOnInput: (value: string) => {
-                state.value.text = value;
-                console.log(state.value);
+                // we need to know which property has changed
             },
         },
-        [h(component, { ...props, text: state.value.text })]
+        [h(component, { ...props })]
     );
 }

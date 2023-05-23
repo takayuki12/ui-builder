@@ -1,15 +1,9 @@
 <script setup lang="ts">
-import { renderer } from '../../core/builder';
-
+import { renderer } from "../../core/builder";
 </script>
 
 <template>
-  <div>
-
-  </div>
+    <div></div>
 </template>
 
-
-<style scoped>
-
-</style>
+<style scoped></style>

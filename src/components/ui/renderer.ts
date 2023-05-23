@@ -1,20 +1,20 @@
 import { computed, h } from "vue";
-import { useObservable, useSubscription, useSubject } from "@vueuse/rxjs";
+import { useObservable, useSubject, useSubscription } from "@vueuse/rxjs";
 import {
     getPageTree,
     getSelectedComponent,
     requestedComponentId,
 } from "@/core/store";
 import { renderer } from "@/core/builder";
-import { Component } from "@/core/types";
-import ItemEditor from './item-editor.vue';
+import { Component, Node } from "@/core/types";
+import ItemEditor from "./item-editor.vue";
 
 function UIRenderer() {
     const tree = useObservable(getPageTree(), {
-        initialValue: [] as Component[],
+        initialValue: [] as Node[],
     });
 
-    return h('div', {}, tree.value.map(renderer));
+    return h("div", {}, tree.value.map(renderer));
 }
 
 export default UIRenderer;

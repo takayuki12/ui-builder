@@ -11,8 +11,8 @@ export type Component = {
 
 export type PropValues = Record<string, any>;
 
-export type  Tree= {
-  id: string;
-  componentId: number;
-  values: PropValues;
-}
+export type Node = {
+    id: string;
+    componentId: number;
+    values: PropValues;
+};

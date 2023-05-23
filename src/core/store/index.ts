@@ -1,10 +1,11 @@
-import { Component, Tree } from "../types";
-import { BehaviorSubject, Subject, map, tap } from "rxjs";
+import { Component, Node } from "../types";
+import { BehaviorSubject, map, Subject, tap } from "rxjs";
+import { v4 as uuid } from "uuid";
 
 let list: Component[] = [];
 export const selectedComponentId = new Subject<number>();
 export const requestedComponentId = new Subject<number>();
-const pageTree = new BehaviorSubject<Component[]>([]);
+export const pageTree = new BehaviorSubject<Node[]>([]);
 
 export function setList(tree: Component[]) {
     list = tree;
@@ -24,12 +25,23 @@ export function getSelectedComponent() {
         }),
         tap((component) => {
             if (component === undefined) return;
-            pageTree.next([...pageTree.getValue(), component]);
-            console.log(pageTree.getValue());
+            const node = {
+                id: uuid(),
+                componentId: component.id,
+                values: {},
+            };
+            console.log("get select component called, nodeid = ", node.id);
+            pageTree.next([...pageTree.getValue(), node]);
         })
     );
 }
 
-export function addComponent(component: Component) {
-    pageTree.next([...pageTree.getValue(), component]);
-}
+// export function addComponent(component: Component) {
+//     const node = {
+//         id: uuid(),
+//         componentId: component.id,
+//         values: {},
+//     };
+//
+//     pageTree.next([...pageTree.getValue(), node]);
+// }

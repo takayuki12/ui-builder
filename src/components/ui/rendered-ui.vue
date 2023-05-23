@@ -27,18 +27,19 @@ const { isOverDropZone } = useDropZone(dropZoneElm, () => {
     //TODO: push element on the tree
 });
 
-
 useObservable(getSelectedComponent());
-
 </script>
 
 <template>
     <div>
         <ui-renderer />
-        <div :class="[
-            !isOverDropZone ? 'bg-gray-200' : 'bg-gray-300',
-            'py-4 text-center',
-        ]" ref="dropZoneElm">
+        <div
+            :class="[
+                !isOverDropZone ? 'bg-gray-200' : 'bg-gray-300',
+                'py-4 text-center',
+            ]"
+            ref="dropZoneElm"
+        >
             drag element over here
         </div>
     </div>

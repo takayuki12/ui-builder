@@ -20,7 +20,7 @@ watch(elms, () => {
     elms.value.forEach((elm) => {
         useDraggable(elm, {
             onStart: ({ x, y }) => {
-              selectedComponentId.next(+elm.dataset.id!);
+                selectedComponentId.next(+elm.dataset.id!);
             },
         });
     });
@@ -45,13 +45,13 @@ watch(elms, () => {
                     <div
                         v-for="item in list"
                         :key="item.id"
-                        :class="['px-4 hover:bg-gray-50 cursor-move py-2']"
+                        :class="['px-4 hover:bg-blue-100 cursor-move py-2']"
                         ref="elms"
                         draggable="true"
                         :data-id="item.id"
                     >
                         <div
-                            class="i-typcn:sort-alphabetically inline-block text-lg"
+                            class="i-carbon:point-of-presence inline-block text-lg"
                         ></div>
                         {{ item.name }}
                     </div>
@@ -71,11 +71,9 @@ watch(elms, () => {
     >
         <div
             :class="[
-                `i-carbon:${isOpen ? 'add' : '3d-software'}`,
+                isOpen ? 'i-carbon:add' : 'i-carbon:3d-software',
                 'absolute -translate-y-1/2 -translate-x-1/2 left-1/2 top-1/2',
             ]"
         ></div>
     </button>
 </template>
-
-<style scoped></style>

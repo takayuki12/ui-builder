@@ -4,6 +4,7 @@ import { getList } from "./core/store";
 import VTypography from "./test-components/v-typography.vue";
 import ComponentList from "@/components/list/component-list.vue";
 import RenderedUi from "@/components/ui/rendered-ui.vue";
+import UiEditor from "./components/ui/ui-editor.vue";
 
 init([
     {
@@ -22,15 +23,10 @@ const list = getList();
     <!-- <router-view /> -->
     <div class="flex flex-col min-h-screen">
         <rendered-ui></rendered-ui>
+        <ui-editor />
 
         <component-list :list="list">
             <template #activator> </template>
         </component-list>
     </div>
 </template>
-
-<style lang="scss">
-.toto {
-    @apply hover:border hover:border-blue-300;
-}
-</style>
