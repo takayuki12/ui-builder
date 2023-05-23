@@ -51,6 +51,9 @@ devDependencies:
   '@unocss/preset-icons':
     specifier: ^0.52.0
     version: 0.52.0
+  '@unocss/transformer-directives':
+    specifier: ^0.52.1
+    version: 0.52.1
   '@vitejs/plugin-vue':
     specifier: ^3.2.0
     version: 3.2.0(vite@4.3.8)(vue@3.3.4)
@@ -722,6 +725,10 @@ packages:
     resolution: {integrity: sha512-MGyG1LpiVtyrHmWmXiDRnf7j+JaJua14K058FGBAhNSLaG37dG6xIfwPuVDBOqEI8EgICmNTJs1T/ImQJYWxtw==}
     dev: true
 
+  /@unocss/core@0.52.1:
+    resolution: {integrity: sha512-Lgx/CmAw6gmDpdqsDywHCltuNOZ9tFd3/47R7k1ZN4tjz4WcZE9l/m66PNzhRxemirff1a0U0U90nQEckYTBhQ==}
+    dev: true
+
   /@unocss/extractor-arbitrary-variants@0.52.0:
     resolution: {integrity: sha512-wJ7a9NWVywHwjWMeB8wN9PHl0fhwOcvAgmhDkyY7A9wXSazaecSMLbKrcnQe7q5bOFGvn5jyxYkk78XZqLWgyg==}
     dependencies:
@@ -837,6 +844,13 @@ packages:
     resolution: {integrity: sha512-Epi5Lt1rMl8RgR2InlRw7ddNcUXekiZl+qEEmb2rAHPnROWMNbJB5gCxk9YzczD+8vIgmFUqacMEqEzOUZdpSQ==}
     dependencies:
       '@unocss/core': 0.52.0
+      css-tree: 2.3.1
+    dev: true
+
+  /@unocss/transformer-directives@0.52.1:
+    resolution: {integrity: sha512-2Py3dJGj6JATrD2M5gkZh3yNAwqGeFJr1YrYzXaHse/gfZxnllngWVQtRm6TUTRd4tfWCA1UkF2wXkPRh48PgA==}
+    dependencies:
+      '@unocss/core': 0.52.1
       css-tree: 2.3.1
     dev: true
 

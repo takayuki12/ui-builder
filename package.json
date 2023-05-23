@@ -27,6 +27,7 @@
     "@types/node": "^18.16.13",
     "@types/webfontloader": "^1.6.35",
     "@unocss/preset-icons": "^0.52.0",
+    "@unocss/transformer-directives": "^0.52.1",
     "@vitejs/plugin-vue": "^3.2.0",
     "@vue/eslint-config-typescript": "^11.0.3",
     "eslint": "^8.41.0",

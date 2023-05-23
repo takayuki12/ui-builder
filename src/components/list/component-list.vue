@@ -29,7 +29,7 @@ watch(elms, () => {
 
 <template>
     <div
-        class="fixed bottom-0 left-1/2 w-full max-w-xl -translate-x-1/2 bottom-20"
+        class="fixed bg-white z-10 bottom-0 left-1/2 w-full max-w-xl -translate-x-1/2 bottom-20"
     >
         <Presence>
             <Motion
