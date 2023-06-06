@@ -1,10 +1,13 @@
 <script lang="ts" setup>
 import { init } from "./core/builder";
 import { getList } from "./core/store";
-import VTypography from "./test-components/v-typography.vue";
 import ComponentList from "@/components/list/component-list.vue";
 import RenderedUi from "@/components/ui/rendered-ui.vue";
-import UiEditor from "./components/ui/ui-editor.vue";
+import UiEditor from "./components/editor/ui-editor.vue";
+
+// testing components
+import VTypography from "./test-components/v-typography.vue";
+import HeroSection from "./test-components/hero-section.vue";
 
 init([
     {
@@ -13,6 +16,16 @@ init([
         component: VTypography,
         props: { text: "string" },
         values: { text: "Hello from h1" },
+    },
+    {
+        id: 2,
+        name: "Hero Section",
+        component: HeroSection,
+        props: {
+            backgroundImage: "string",
+            heading: "string",
+            paragraph: "string",
+        },
     },
 ]);
 

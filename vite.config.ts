@@ -1,6 +1,7 @@
 // Plugins
 import vue from "@vitejs/plugin-vue";
 import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
+import jsx from "@vitejs/plugin-vue-jsx";
 import Unocss from "unocss/vite";
 
 // Utilities
@@ -20,6 +21,7 @@ export default defineConfig({
                 configFile: "src/styles/settings.scss",
             },
         }),
+        jsx({}),
         Unocss(),
     ],
     define: { "process.env": {} },

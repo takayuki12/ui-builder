@@ -16,10 +16,12 @@ import {
 import { useDraggable } from "@vueuse/core";
 import { useSubscription } from "@vueuse/rxjs";
 import { ref } from "vue";
+import EditText from "./edit-text.vue";
 
 const state = ref<Record<string, any>>({});
 const node = ref("");
 const isOpen = ref(false);
+const fields = ref<string[]>([]);
 
 useSubscription(
     requestedNodeId.subscribe((nodeId) => {
@@ -30,7 +32,9 @@ useSubscription(
 useSubscription(
     nodeToEdit$.subscribe(({ node, element }) => {
         if (element === undefined || node === undefined) return;
+        fields.value = [];
         state.value = Object.keys(element.props).reduce((store, key) => {
+            fields.value.push(key);
             store[key] = node.values[key] || "default value";
             return store;
         }, {} as Record<string, any>);
@@ -79,11 +83,12 @@ const { style } = useDraggable(elm, {
             ></div>
         </button>
         <h3 class="text-lg font-normal mb-4">Edit: {{ node }}</h3>
-        <textarea
-            class="w-full border rounded"
-            name="text"
-            :value="state['text']"
-            @input="handleChange"
+        <edit-text
+            v-for="field in fields"
+            :key="field"
+            :label="field"
+            :value="state[field]"
+            @new-value="(v) => (state[field] = v)"
         />
 
         <button
