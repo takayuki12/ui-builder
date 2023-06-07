@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { formatLabel} from './functions';
+import { formatLabel } from "./functions";
 const props = defineProps<{ label: string; value: string }>();
 const emit = defineEmits<{ (event: "newValue", data: string): void }>();
 </script>

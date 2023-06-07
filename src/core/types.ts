@@ -1,4 +1,4 @@
-export type PropTypes = "string" | "[string]" | 'bool';
+export type PropTypes = "string" | "[string]" | "bool";
 export type ComponentProp = Record<string, PropTypes>;
 
 export type Component = {

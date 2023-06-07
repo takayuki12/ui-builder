@@ -93,8 +93,12 @@ const { style } = useDraggable(elm, {
                 :value="state[field.name]"
                 @new-value="(v) => (state[field.name] = v)"
             />
-            <div class="p-2 space-x-2" v-else-if="field.type === 'bool'" >
-                <input type="checkbox" v-model="state[field.name]" :id="field.name"/>
+            <div class="p-2 space-x-2" v-else-if="field.type === 'bool'">
+                <input
+                    type="checkbox"
+                    v-model="state[field.name]"
+                    :id="field.name"
+                />
                 <label :for="field.name">{{ field.name }}</label>
             </div>
         </template>

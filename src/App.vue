@@ -24,7 +24,7 @@ init([
         props: {
             backgroundImage: "string",
             heading: "string",
-      isDark: 'bool',
+            isDark: "bool",
             paragraph: "string",
         },
     },

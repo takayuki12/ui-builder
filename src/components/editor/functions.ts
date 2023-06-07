@@ -13,5 +13,5 @@ export function formatLabel(label: string): string {
 
         output += " " + char.toLowerCase();
     }
-  return output;
+    return output;
 }
