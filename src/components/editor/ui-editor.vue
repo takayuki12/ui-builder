@@ -16,10 +16,13 @@ import {
 import { useDraggable } from "@vueuse/core";
 import { useSubscription } from "@vueuse/rxjs";
 import { ref } from "vue";
+import EditText from "./edit-text.vue";
+import { PropTypes } from "@/core/types";
 
 const state = ref<Record<string, any>>({});
 const node = ref("");
 const isOpen = ref(false);
+const fields = ref<{ type: PropTypes; name: string }[]>([]);
 
 useSubscription(
     requestedNodeId.subscribe((nodeId) => {
@@ -30,8 +33,12 @@ useSubscription(
 useSubscription(
     nodeToEdit$.subscribe(({ node, element }) => {
         if (element === undefined || node === undefined) return;
+        fields.value = [];
         state.value = Object.keys(element.props).reduce((store, key) => {
-            store[key] = node.values[key] || "default value";
+            fields.value.push({ name: key, type: element.props[key] });
+            const defaultValue =
+                element.props[key] === "string" ? "default value" : false;
+            store[key] = node.values[key] || defaultValue;
             return store;
         }, {} as Record<string, any>);
     })
@@ -79,13 +86,18 @@ const { style } = useDraggable(elm, {
             ></div>
         </button>
         <h3 class="text-lg font-normal mb-4">Edit: {{ node }}</h3>
-        <textarea
-            class="w-full border rounded"
-            name="text"
-            :value="state['text']"
-            @input="handleChange"
-        />
-
+        <template v-for="field in fields" :key="field.name">
+            <edit-text
+                v-if="field.type === 'string'"
+                :label="field.name"
+                :value="state[field.name]"
+                @new-value="(v) => (state[field.name] = v)"
+            />
+            <div class="p-2 space-x-2" v-else-if="field.type === 'bool'" >
+                <input type="checkbox" v-model="state[field.name]" :id="field.name"/>
+                <label :for="field.name">{{ field.name }}</label>
+            </div>
+        </template>
         <button
             class="ml-auto text-blue-300 border-solid border-blue-300 px-4 py-2 rounded font-bold"
             @click="updateState"

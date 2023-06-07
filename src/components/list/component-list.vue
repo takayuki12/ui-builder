@@ -61,8 +61,8 @@ watch(elms, () => {
         :class="[
             'text-gray-700 font-bold text-xl w-10 h-10 bottom-5  px-4 py-4 fixed shadow-lg rounded-full',
             'z-10 -translate-x-1/2 left-1/2',
+            isOpen ? 'bg-blue-400 text-white rotate-45' : 'bg-white',
             'hover:bg-blue-400 hover:text-white',
-            isOpen ? 'bg-blue-400 text-white rotate-45' : '',
         ]"
         @click="isOpen = !isOpen"
     >
