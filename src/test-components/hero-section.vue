@@ -1,9 +1,13 @@
 <script setup lang="ts">
-const props = defineProps<{
-    backgroundImage: string;
-    heading: string;
-    paragraph: string;
-}>();
+const props = withDefaults(
+    defineProps<{
+        backgroundImage: string;
+        heading: string;
+        paragraph: string;
+        isDark?: boolean;
+    }>(),
+    { isDark: false }
+);
 </script>
 
 <template>
@@ -15,7 +19,12 @@ const props = defineProps<{
             backgroundPosition: 'center',
         }"
     >
-        <div class="max-w-2xl text-center text-white">
+        <div
+            :class="[
+                'max-w-2xl text-center',
+                isDark ? 'text-white' : 'text-dark',
+            ]"
+        >
             <h1 class="text-6xl mb-2">{{ props.heading }}</h1>
             <p class="text-lg">{{ props.paragraph }}</p>
         </div>

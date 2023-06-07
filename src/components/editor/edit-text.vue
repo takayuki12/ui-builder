@@ -5,7 +5,7 @@ const emit = defineEmits<{ (event: "newValue", data: string): void }>();
 </script>
 
 <template>
-    <div class="flex flex-col my-10 mx-4">
+    <div class="flex flex-col my-2 mx-2">
         <label>{{ formatLabel(props.label) }}</label>
         <input
             class="w-full border-solid border-gray-200 focus:border-blue-200 focus:outline-none rounded px-4 py-1"

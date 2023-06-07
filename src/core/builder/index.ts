@@ -15,7 +15,8 @@ export function renderer(node: Node) {
     const props: Record<string, any> = {};
 
     Object.keys(elmprops).forEach((key) => {
-        props[key] = node.values[key] || "default value";
+        props[key] = node.values[key] || (elmprops[key] === 'string' ? "default value" : false);
+
     });
 
     return h(
